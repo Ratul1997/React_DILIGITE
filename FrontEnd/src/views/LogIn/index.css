@@ -1,0 +1,32 @@
+.root {
+    height: 100vh;
+    display: flex;
+    /* align-items: center; */
+    justify-content: center;
+    /* background-color: blue; */
+}
+.root .form-container{
+    display: flex;
+    height: auto;
+    width: 30vw;
+    /* margin-left: 50vw; */
+    margin-top: 12vh;
+    /* margin-bottom: 5vh; */
+    flex-direction: column;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.root .form-container .form-group{
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 2vh;
+}
+
+.root .form-container .form-link{
+    display: flex;
+    justify-content: center;
+}
+
+.root .form-container .form-title{
+    display: flex;
+    justify-content: center;
+}
