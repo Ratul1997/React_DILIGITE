@@ -8,10 +8,8 @@ export default function Status(props) {
     console.log(props);
 
     return (
-        <div>
         <StatusView 
             authorisedUserDetails = {authorisedUserDetails}
         />
-        </div>
     )
 }

@@ -10,7 +10,7 @@ export default function PostListitems(props) {
         <div>
             <ul type = "none">
                 {
-                    postItemsIntel.map((item , index) => <Post value = {item} authorisedUserDetails = {authorisedUserDetails}/>)
+                    postItemsIntel.map((item , index) => <Post key = {index} value = {item} authorisedUserDetails = {authorisedUserDetails}/>)
                 }
             </ul>
         </div>

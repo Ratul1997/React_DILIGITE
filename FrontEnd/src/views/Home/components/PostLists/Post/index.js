@@ -37,12 +37,6 @@ export default function Post(props) {
         setAnchorEl(null);
     };
 
-    const updateLikesNumber = () => {
-        axios.post(`http://localhost:${PORT}/likesNumber`, {item, authorisedUserDetails, noOfLikes})
-        .then((res)=>{
-        })
-    }
-
     //// handling action for like button
     const onClickLikeButtonHandler = (e) =>{
 
@@ -77,15 +71,6 @@ export default function Post(props) {
         console.log("share button prossed");
         
     }
-
-    useEffect(() => {
-        axios.post(`http://localhost:${PORT}/userPosts`, {item, authorisedUserDetails})
-        .then((res)=>{
-            if(res.data.length){
-                console.log(res.data)
-            }
-        })
-    }, [])
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////
     return (

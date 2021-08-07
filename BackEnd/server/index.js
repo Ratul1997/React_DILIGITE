@@ -132,9 +132,8 @@ app.post("/likesNumber",(req,res) =>{
 
 {/**getting logged in user's posts */}
 app.post("/userPosts",(req,res) =>{
-    const postId = req.body.item.postId;
     const userId = req.body.authorisedUserDetails.userId;
-    db.query(`SELECT * FROM posts WHERE userId = '${userId}' AND postId = '${postId}'`,(error,rows) =>{
+    db.query(`SELECT * FROM posts WHERE userId = '${userId}'`,(error,rows) =>{
         if(error){
             console.log(error);
         } else {
