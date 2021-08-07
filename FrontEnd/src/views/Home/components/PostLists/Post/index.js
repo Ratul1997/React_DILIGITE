@@ -45,11 +45,9 @@ export default function Post(props) {
         if(isLiked === true){
             setNoOfLikes(noOfLikes - 1)
             setIsLiked(false)
-            updateLikesNumber()
         } else{
             setNoOfLikes(noOfLikes + 1)
             setIsLiked(true)
-            updateLikesNumber()
         }
         console.log("like button prossed");
         

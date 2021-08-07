@@ -114,22 +114,6 @@ app.get("/postListItems",(req,res) =>{
     })
 })
 
-{/**posting number of likes */}
-app.post("/likesNumber",(req,res) =>{
-    const postId = req.body.item.postId;
-    const userId = req.body.authorisedUserDetails.userId;
-    const noOfLikes = req.body.noOfLikes;
-    db.query(`UPDATE posts SET likes_number = '${noOfLikes}' WHERE userId = '${userId}' AND postId = '${postId}'`, [noOfLikes], (error,rows) =>{
-        if(error){
-            console.log(error);
-        } else {
-            res.send(rows)
-            console.log(rows);
-        }
-        // console.log('The data from beer table are: \n', rows)
-    })
-})
-
 {/**getting logged in user's posts */}
 app.post("/userPosts",(req,res) =>{
     const userId = req.body.authorisedUserDetails.userId;
