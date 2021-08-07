@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { useLocation } from 'react-router-dom'
 import ProfileView from './ProfileView'
 
@@ -8,5 +8,12 @@ export default function () {
 
     console.log(location);
 
-    return <ProfileView />
+    const [authorisedUserDetails, setAuthorisedUserDetails] = useState(location.state.data);
+
+    return (
+        <ProfileView 
+            authorisedUserDetails = {authorisedUserDetails}
+            setAuthorisedUserDetails = {setAuthorisedUserDetails}
+        />
+     )
 }

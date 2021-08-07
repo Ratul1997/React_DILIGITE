@@ -6,7 +6,8 @@ import {Link} from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 
 
-export default function ProfileHeader() {
+export default function ProfileHeader(props) {
+    const {authorisedUserDetails, setAuthorisedUserDetails} = props
     const useStyles = makeStyles(theme => ({
         root:{
             display : 'flex',
@@ -32,7 +33,7 @@ export default function ProfileHeader() {
             {/* logged in as portion */}
             <div>
                 <p className = {styles.logger_name}>
-                    <b>name of the logger{/*authorisedUserDetails.userHandle*/}</b>
+                    <b>{authorisedUserDetails.userHandle}</b>
                 </p>
             </div>
 

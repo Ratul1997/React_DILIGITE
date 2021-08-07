@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React , {useState} from 'react'
+import React , {useState, useEffect} from 'react'
 import { useLocation } from 'react-router-dom';
 import PostBox from './components/PostBox'
 import HomeElements from './HomeElements'
@@ -17,15 +17,18 @@ export default function Home(props) {
     
     ///////////////////////////////////////////        controller     ///////////////////////////////////////////
 
-    axios.get(`http://localhost:${PORT}/postListItems`)
-    .then((res)=>{
-        setPostItemsIntel(res.data);
-    })
+    useEffect(() => {
+        axios.get(`http://localhost:${PORT}/postListItems`)
+        .then((res)=>{
+            setPostItemsIntel(res.data);
+        })
+    }, [])
 
     ///////////////////////////////////////   view   /////////////////////////////////////////////////////
     return <HomeElements 
                 newPost = {newPost}
                 authorisedUserDetails = {authorisedUserDetails}
+                setAuthorisedUserDetails = {setAuthorisedUserDetails}
                 postItemsIntel = {postItemsIntel}
                 setNewPost = {setNewPost}
                 

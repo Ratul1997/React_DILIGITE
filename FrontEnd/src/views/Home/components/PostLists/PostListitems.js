@@ -2,13 +2,15 @@ import React from 'react'
 import Post from './Post'
 
 export default function PostListitems(props) {
-    const {postItemsIntel} = props;    
+    const {
+        authorisedUserDetails,
+        postItemsIntel
+    } = props;    
     return (
         <div>
             <ul type = "none">
                 {
-                    // <Post />
-                    postItemsIntel.map((item , index) => <Post key = {index} index = {index} value = {item} />)
+                    postItemsIntel.map((item , index) => <Post value = {item} authorisedUserDetails = {authorisedUserDetails}/>)
                 }
             </ul>
         </div>

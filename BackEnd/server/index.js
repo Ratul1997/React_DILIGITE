@@ -16,7 +16,7 @@ const db = mysql.createConnection({
     host : 'localhost',
     user : 'root',
     password : '',
-    database : 'dlgt_project_1'
+    database : 'dlgt_project_2'
 })
 
 db.connect(function(error){
@@ -89,9 +89,9 @@ app.post('/postNewElements',(req,res) =>{
     const postUpdatedTime = req.body.tempNewPost.postUpdatedTime;
     const postUserName = req.body.tempNewPost.postUserName;
     console.log(req.body.tempNewPost);
-    const sqlInstert = "INSERT INTO posts (postId, userId, postDescription, postInsertedTime, postUpdatedTime,postUserName) VALUES (?, ?, ?, ?, ?,?)";
+    const sqlInstert = "INSERT INTO posts (postId, userId, postDescription, postInsertedTime, postUpdatedTime, postUserName) VALUES (?, ?, ?, ?, ?,?)";
     if(userId){
-        db.query(sqlInstert, ["NULL" , userId,postDescription,postInsertedTime,postUpdatedTime,postUserName],(error,result) =>{
+        db.query(sqlInstert, ["NULL" , userId,postDescription,postInsertedTime,postUpdatedTime,postUserName.noOfLikes],(error,result) =>{
             if(error){
                 console.log(error);
             } else {
@@ -113,6 +113,71 @@ app.get("/postListItems",(req,res) =>{
         // console.log('The data from beer table are: \n', rows)
     })
 })
+
+{/**posting number of likes */}
+app.post("/likesNumber",(req,res) =>{
+    const postId = req.body.item.postId;
+    const userId = req.body.authorisedUserDetails.userId;
+    const noOfLikes = req.body.noOfLikes;
+    db.query(`UPDATE posts SET likes_number = '${noOfLikes}' WHERE userId = '${userId}' AND postId = '${postId}'`, [noOfLikes], (error,rows) =>{
+        if(error){
+            console.log(error);
+        } else {
+            res.send(rows)
+            console.log(rows);
+        }
+        // console.log('The data from beer table are: \n', rows)
+    })
+})
+
+{/**getting logged in user's posts */}
+app.post("/userPosts",(req,res) =>{
+    const postId = req.body.item.postId;
+    const userId = req.body.authorisedUserDetails.userId;
+    db.query(`SELECT * FROM posts WHERE userId = '${userId}' AND postId = '${postId}'`,(error,rows) =>{
+        if(error){
+            console.log(error);
+        } else {
+            res.send(rows)
+            console.log(rows);
+        }
+    })
+})
+
+{/**getting user info */}
+app.post("/userInfo",(req,res) =>{
+    const userId = req.body.updateUserDetails.userId;
+    db.query(`SELECT * FROM users WHERE userId = '${userId}'`,(error,rows) =>{
+        if(error){
+            console.log(error);
+        } else {
+            res.send(rows)
+            console.log(rows);
+        }
+        // console.log('The data from beer table are: \n', rows)
+    })
+})
+
+{/**updating user info  */}
+app.post("/updateUserInfo",(req,res) =>{
+    const userId = req.body.updateUserDetails.userId;
+    const userHandleName = req.body.updateUserDetails.userHandleName;
+    const userName = req.body.updateUserDetails.userName;
+    const userEmailAddress = req.body.updateUserDetails.userEmailAddress;
+    const userPhoneNumber = req.body.updateUserDetails.userPhoneNumber;
+    const userPassword = req.body.updateUserDetails.userPassword;
+    const userUpdatedTime = req.body.updateUserDetails.userUpdatedTime;
+    db.query(`UPDATE users SET userHandle='${userHandleName}', userPassword='${userPassword}', userName='${userName}', userPhoneNumber='${userPhoneNumber}', userUpdatedTime='${userUpdatedTime}', userEmailAddress='${userEmailAddress}' WHERE userId = '${userId}'`,(error,rows) =>{
+        if(error){
+            console.log(error);
+        } else {
+            res.send(rows)
+            console.log(rows);
+        }
+        // console.log('The data from beer table are: \n', rows)
+    })
+})
+
 app.listen(PORT , () =>{
     // console.log(PORT);
     console.log(`Server listening on ${PORT}`);

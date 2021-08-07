@@ -1,8 +1,17 @@
 import React from 'react'
-import Status from './Status';
+import StatusView from './StatusView'
 
-export default function () {
+export default function Status(props) {
+    const {authorisedUserDetails} = props
+
+    console.log("INSIDE STATUS");
+    console.log(props);
+
     return (
-        <Status />
+        <div>
+        <StatusView 
+            authorisedUserDetails = {authorisedUserDetails}
+        />
+        </div>
     )
 }

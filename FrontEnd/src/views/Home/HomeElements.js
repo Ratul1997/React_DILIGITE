@@ -2,11 +2,10 @@ import React from 'react'
 import HomeHeader from './components/HomeHeader'
 import PostBox from './components/PostBox'
 import PostLists from './components/PostLists';
-import PostListitems from './components/PostLists/PostListitems'
 
 export default function HomeElements(props) {
     ///////////////////////////////////////////////////////////////////////////////////////////////
-    const {newPost , authorisedUserDetails, postItemsIntel, setNewPost} = props;
+    const {newPost , authorisedUserDetails, setAuthorisedUserDetails, postItemsIntel, setNewPost} = props;
 
     ////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -16,6 +15,7 @@ export default function HomeElements(props) {
         <div>
             <HomeHeader
                 authorisedUserDetails = {authorisedUserDetails}
+                setAuthorisedUserDetails = {setAuthorisedUserDetails}
             />
             <PostBox 
                 newPost = {newPost}
@@ -23,6 +23,7 @@ export default function HomeElements(props) {
                 setNewPost = {setNewPost}
             />
             <PostLists 
+            authorisedUserDetails = {authorisedUserDetails}
                 postItemsIntel = {postItemsIntel}
             />
         </div>
